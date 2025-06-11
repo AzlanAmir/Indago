@@ -2,7 +2,7 @@ import React from 'react';
 
 function AddJob() {
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className=" flex bg-gray-50">
       
 
       <div className="flex-1 p-10">

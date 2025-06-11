@@ -8,8 +8,9 @@ import Home from './components/Home';
 import AllJobs from './components/AllJobs';
 import Sidebar from './components/Sidebar';
 import AddJob from './components/AddJob';
-import Layout from "./components/layout";
+import Layout from "./components/Layout";
 import Example from"./components/BarChart"
+import Profile from "./components/Profile";
 function App() {
 
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/home" element={<Layout><Home/></Layout>}/>
         <Route path="/alljobs" element={<Layout><AllJobs/></Layout>}/>
         <Route path="/addjob" element={<Layout><AddJob/></Layout>}/>
+        <Route path="/profile" element={<Layout><Profile/></Layout>}/>
         <Route path="/logout" element={<Register/>}/>
 
       </Routes>

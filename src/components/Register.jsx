@@ -4,7 +4,6 @@ import image from "../assets/profile-img.jpg"
 import logo from "../assets/indago-logo.png" // Replace with your actual logo path
 
 function Register() {
-    const [state,setState]=useState(true)
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       {/* Left Section */}

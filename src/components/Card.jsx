@@ -3,7 +3,7 @@ import companyLogo from "../assets/indago-logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 
-function Card() {
+function Card({inputField,dropDownType,dropDownStatus}) {
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 10;
 
@@ -60,12 +60,6 @@ function Card() {
   { companyName: "Meta", jobPost: "Security Engineer", location: "Santa Clara, CA", status: "Pending", type: "Part Time" }
 ];
 
-
-  const totalPages = Math.ceil(jobs.length / jobsPerPage);
-  const indexOfLastJob = currentPage * jobsPerPage;
-  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
-
   const getStatusStyle = (status) => {
     switch (status) {
       case "Interview":
@@ -78,6 +72,22 @@ function Card() {
         return "bg-gray-100 text-gray-700";
     }
   };
+
+
+const filteredJobs = jobs.filter((job) => {
+  const matchesCompany = job.companyName.toLowerCase().includes(inputField.toLowerCase());
+  const matchesStatus = dropDownStatus === "" || job.status === dropDownStatus;
+  const matchesType = dropDownType === "" || job.type === dropDownType;
+  return matchesCompany && matchesStatus && matchesType;
+});
+
+
+const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+const indexOfLastJob = currentPage * jobsPerPage;
+const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+
+
 
   const goToPage = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -127,6 +137,8 @@ function Card() {
           </div>
         ))}
       </div>
+
+      
 
       {/* Pagination Controls */}
       <div className="flex justify-center mt-6 gap-2">
